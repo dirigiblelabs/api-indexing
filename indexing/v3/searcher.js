@@ -11,5 +11,6 @@
 var java = require('core/v3/java');
 
 exports.search = function(index, term) {
-	java.call('org.eclipse.dirigible.api.v3.indexing.IndexingFacade', 'search', [index, term]);
+	var results = java.call('org.eclipse.dirigible.api.v3.indexing.IndexingFacade', 'search', [index, term]);
+	return JSON.parse(results);
 };
