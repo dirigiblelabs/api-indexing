@@ -10,6 +10,13 @@
 
 var java = require('core/v3/java');
 
-exports.add = function(index, location, lastModified, contents) {
-	java.call('org.eclipse.dirigible.api.v3.indexing.IndexingFacade', 'add', [index, location, lastModified, contents]);
+exports.add = function(index, location, contents, lastModified, parameters) {
+	if (!lastModified) {
+		lastModified = new Date();
+	}
+	var map = "{}";
+	if (parameters) {
+		map = JSON.stringify(parameters);
+	}
+	java.call('org.eclipse.dirigible.api.v3.indexing.IndexingFacade', 'add', [index, location, contents, '' + lastModified.getTime(), map]);
 };

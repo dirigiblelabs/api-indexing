@@ -14,3 +14,18 @@ exports.search = function(index, term) {
 	var results = java.call('org.eclipse.dirigible.api.v3.indexing.IndexingFacade', 'search', [index, term]);
 	return JSON.parse(results);
 };
+
+exports.before = function(index, date) {
+	var results = java.call('org.eclipse.dirigible.api.v3.indexing.IndexingFacade', 'before', [index, '' + date.getTime()]);
+	return JSON.parse(results);
+};
+
+exports.after = function(index, date) {
+	var results = java.call('org.eclipse.dirigible.api.v3.indexing.IndexingFacade', 'after', [index, '' + date.getTime()]);
+	return JSON.parse(results);
+};
+
+exports.between = function(index, lower, upper) {
+	var results = java.call('org.eclipse.dirigible.api.v3.indexing.IndexingFacade', 'between', [index, '' + lower.getTime(), '' + upper.getTime()]);
+	return JSON.parse(results);
+};
